@@ -15,8 +15,8 @@ class TableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubview(videoImageView)
-        addSubview(videoTitleLabel)
+        contentView.addSubview(videoImageView)
+        contentView.addSubview(videoTitleLabel)
         
         configureImageView()
         configureTitleLabel()
@@ -46,9 +46,8 @@ class TableViewCell: UITableViewCell {
     private func setImageConstraints() {
         videoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            videoImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            videoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            videoImageView.heightAnchor.constraint(equalToConstant: 80),
+            videoImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            videoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             videoImageView.widthAnchor.constraint(equalTo: videoImageView.heightAnchor, multiplier: 16/9)
         ])
     }
@@ -56,10 +55,9 @@ class TableViewCell: UITableViewCell {
     private func setTitleLabelConstraints() {
         videoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            videoTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            videoTitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             videoTitleLabel.leadingAnchor.constraint(equalTo: videoImageView.trailingAnchor, constant: 20),
-            videoTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            videoTitleLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 80)
+            videoTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
     
